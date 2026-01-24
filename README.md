@@ -63,25 +63,40 @@ Sanity.io entegrasyonu sayesinde aşağıdaki içerikler kod yazılmadan yöneti
 ## Proje Yapısı (Özet)
 
 ```txt
-├── app/
-│   ├── blog/
-│   ├── services/
-│   ├── cases/
-│   └── appointment/
-├── components/
-│   ├── Navbar
-│   ├── Footer
-│   ├── Sliders
-│   └── Forms
-├── sanity/
-│   ├── schemas/
-│   └── client.ts
-├── lib/
-│   ├── emailjs.ts
-│   └── seo.ts
-├── public/
-└── styles/
+kbb-portfolio/
+├── src/
+│   ├── app/                         # Next.js 15 App Router Sistemi
+│   │   ├── blog/ [slug]/            # Dinamik blog detay sayfaları
+│   │   ├── randevu/                 # Özel randevu yönetim sayfası
+│   │   ├── studio/ [[...tool]]/     # Sanity Studio yönetim paneli (Giriş)
+│   │   ├── data/                    # Yerel veriler (cases.json vb.)
+│   │   ├── favicon.ico              # Site ikonu
+│   │   ├── globals.css              # Tailwind & Global CSS stilleri
+│   │   ├── layout.tsx               # Ana şablon (Navbar & Footer'ın evi)
+│   │   └── page.tsx                 # Ana sayfa (Tüm section'ların birleşimi)
+│   ├── components/                  # UI Bileşenleri (Seninle düzelttiğimiz yer)
+│   │   ├── Navbar.tsx               # Logo solda, yönlendirmeler ortada olan bar
+│   │   ├── Appointment.tsx          # EmailJS entegreli randevu formu
+│   │   ├── BeforeAfter.tsx          # Vaka analiz slider bileşeni
+│   │   ├── BlogList.tsx             # Ana sayfadaki blog kartları
+│   │   ├── FAQ.tsx                  # Sıkça Sorulan Sorular akordiyonu
+│   │   ├── Footer.tsx               # İletişim bilgilerinin olduğu alt kısım
+│   │   └── Services.tsx             # Hizmetler listesi
+│   ├── lib/                         # Yardımcı kütüphaneler
+│   │   └── sanity.ts                # Sanity istemci bağlantı ayarları
+│   └── sanity/ schemaTypes/         # İçerik Yönetim Modelleri
+│       ├── index.ts                 # Şemaların birleştiği ana dosya
+│       ├── post.ts                  # Blog yazısı veri yapısı
+│       └── vaka.ts                  # Ameliyat vakaları veri yapısı
+├── public/                          # Statik dosyalar ve görseller
+├── .gitignore                       # Git dışı bırakılacaklar
+├── next.config.ts                   # Next.js & Turbopack yapılandırması
+├── package.json                     # Proje bağımlılıkları ve scriptler
+├── README.md                        # Seninle yazdığımız profesyonel döküman
+└── vercel.json                      # Vercel deployment ayarları (varsa)
 ```
+
+
 
 ## Kurulum ve Çalıştırma
 ### Depoyu Klonlama
