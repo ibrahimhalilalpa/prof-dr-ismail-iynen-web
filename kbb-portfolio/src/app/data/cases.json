@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "title": "Doğal Rinoplasti",
+        "category": "Rinoplasti",
+        "before": "/cases/vaka1-oncesi.jpg",
+        "after": "/cases/vaka1-sonrasi.jpg"
+    },
+    {
+        "id": 2,
+        "title": "Kepçe Kulak Onarımı",
+        "category": "Otoplasti",
+        "before": "/cases/vaka2-oncesi.jpg",
+        "after": "/cases/vaka2-sonrasi.jpg"
+    }
+]
