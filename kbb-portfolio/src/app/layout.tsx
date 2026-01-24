@@ -6,8 +6,8 @@ import Navbar from "@/components/Navbar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Dr. İbrahim Ünal | KBB ve Baş Boyun Cerrahisi",
-  description: "Dr. İbrahim Ünal ile fonksiyonel KBB cerrahisi ve kişiye özel doğal estetik yaklaşımlar.",
+  title: "Prof. Dr. İsmail İynen | KBB ve Baş Boyun Cerrahisi",
+  description: "Ultrasonik (Piezo) Rinoplasti ve Revizyon Burun Estetiği Uzmanı Prof. Dr. İsmail İynen resmi web portfolyosu.",
 };
 
 export default function RootLayout({

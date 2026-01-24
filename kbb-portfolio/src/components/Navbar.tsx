@@ -53,8 +53,12 @@ export default function Navbar() {
                             <Stethoscope size={18} className="text-white" />
                         </div>
                         <div className="flex flex-col leading-tight hidden sm:flex">
-                            <span className="text-slate-900 font-black text-[12px] md:text-sm uppercase tracking-tight whitespace-nowrap">Dr. İbrahim Ünal</span>
-                            <span className="text-blue-600 text-[8px] font-bold uppercase tracking-[0.2em]">KBB Cerrahisi</span>
+                            <span className="text-slate-900 font-black text-[12px] md:text-sm uppercase tracking-tight whitespace-nowrap">
+                                Prof. Dr. İsmail İynen
+                            </span>
+                            <span className="text-blue-600 text-[8px] font-bold uppercase tracking-[0.2em]">
+                                KBB ve Baş Boyun Cerrahisi
+                            </span>
                         </div>
                     </Link>
                 </div>
@@ -76,12 +80,12 @@ export default function Navbar() {
                 {/* 3. SAĞ: WhatsApp & Mobil Menu Butonu */}
                 <div className="flex items-center gap-3 z-10">
                     <a
-                        href="https://wa.me/905555555555"
+                        href="https://wa.me/905309007501"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="hidden sm:flex items-center gap-2 px-6 py-2.5 bg-slate-900 hover:bg-[#25D366] text-white rounded-full transition-all duration-300 shadow-lg group"
                     >
-                        <span className="text-[10px] font-black uppercase tracking-[0.2em]">WhatsApp</span>
+                        <span className="text-[10px] font-black uppercase tracking-[0.2em]">0530 900 7501</span>
                         <span className="group-hover:translate-x-1 transition-transform">→</span>
                     </a>
 
