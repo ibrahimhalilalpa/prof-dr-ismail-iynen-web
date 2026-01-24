@@ -1,4 +1,5 @@
-# Dr. İbrahim Ünal  
+# Prof. Dr. İsmail İynen
+
 ## KBB ve Baş & Boyun Cerrahisi – Web Portfolyosu
 
 Bu proje, KBB Uzmanı Dr. İbrahim Ünal için geliştirilmiş; yüksek performanslı, SEO uyumlu ve modern mimariye sahip bir cerrah portfolyo ve randevu web sitesidir.  
@@ -102,8 +103,8 @@ kbb-portfolio/
 ### Depoyu Klonlama
 
 ````bash
-git clone https://github.com/ibrahimhalilalpa/dr-ibrahim-unal-web.git
-cd dr-ibrahim-unal-web
+git clone https://github.com/ibrahimhalilalpa/prof-dr-ismail-iynen-web.git
+cd prof-dr-ismail-iynen-web
 ````
 
 
