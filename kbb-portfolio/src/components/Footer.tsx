@@ -17,7 +17,7 @@ export default function Footer() {
                             </h3>
                         </div>
                         <p className="text-slate-400 leading-relaxed max-w-sm font-medium">
-                            Harran Üniversitesi Tıp Fakültesi Kulak Burun Boğaz Hastalıkları A.D. Başkanı olarak modern cerrahi tekniklerle sağlığınızı önemsiyoruz.
+                            Harran Üniversitesi Tıp Fakültesi Kulak Burun Boğaz Hastalıkları A.D. olarak modern cerrahi tekniklerle sağlığınızı önemsiyoruz.
                         </p>
                     </div>
 
@@ -51,7 +51,7 @@ export default function Footer() {
                         >
                             <Instagram size={24} className="text-pink-500 group-hover:scale-110 transition-transform" />
                             <div className="flex flex-col">
-                                <span className="text-[10px] text-slate-500 font-bold uppercase">Instagram Takip Edin</span>
+                                <span className="text-[10px] text-slate-500 font-bold uppercase">Instagram</span>
                                 <span className="font-bold text-sm text-white">@prof.dr.ismailiynen</span>
                             </div>
                         </a>

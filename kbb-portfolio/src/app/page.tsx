@@ -11,7 +11,7 @@ export default function Home() {
 
   return (
     <main className="bg-white relative">
-      {/* Sabit WhatsApp Butonu */}
+      {/* Sabit WhatsApp Butonu 
       <a
         href={WHATSAPP_URL}
         target="_blank"
@@ -20,7 +20,7 @@ export default function Home() {
       >
         <MessageCircle size={32} />
       </a>
-
+*/}
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-slate-50/50">
         <div className="absolute top-0 right-0 w-1/3 h-full bg-blue-50/50 -skew-x-12 translate-x-1/2 pointer-events-none" />
@@ -36,7 +36,7 @@ export default function Home() {
               <span className="text-blue-600">Revizyon Rinoplasti</span>
             </h1>
             <p className="text-lg text-slate-600 max-w-2xl mt-4">
-              Harran Üniversitesi Tıp Fakültesi KBB Hastalıkları A.D. Başkanı olarak,
+              Harran Üniversitesi Tıp Fakültesi KBB Hastalıkları A.D. olarak,
               modern piezo teknolojisi ile estetik ve fonksiyonel burun cerrahisinde
               uzman çözümler sunuyoruz.
             </p>
