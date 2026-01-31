@@ -46,8 +46,8 @@ export default function AppointmentForm() {
 
                             <div className="space-y-6">
                                 {[
-                                    { label: 'Telefon', val: '+90 541 710 2113', icon: '📞' },
-                                    { label: 'Klinik Adresi', val: 'Bağdat Caddesi, İstanbul', icon: '📍' }
+                                    { label: 'Telefon', val: '+90 530 900 7501', icon: '📞' },
+                                    { label: 'Klinik Adresi', val: 'Şanlıurfa', icon: '📍' }
                                 ].map((item, i) => (
                                     <div key={i} className="flex items-center gap-4">
                                         <div className="w-10 h-10 shrink-0 rounded-xl bg-white shadow-sm flex items-center justify-center text-lg border border-slate-100">

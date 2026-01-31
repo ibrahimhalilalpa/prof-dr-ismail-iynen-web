@@ -29,11 +29,13 @@ export default function Navbar() {
     const isInternalPage = pathname !== '/';
 
     const navLinks = [
+        { name: 'Anasayfa', href: '/#anasayfa' },
         { name: 'Hizmetler', href: '/#hizmetler' },
         { name: 'Vakalar', href: '/#vakalar' },
         { name: 'S.S.S.', href: '/#sss' },
         { name: 'İletişim', href: '/#iletisim' },
         { name: 'Randevu', href: '/randevu', highlight: true },
+        { name: 'Hakkımda', href: '/hakkimda' },
     ];
 
     return (
