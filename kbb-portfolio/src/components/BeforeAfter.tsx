@@ -42,20 +42,34 @@ export default function BeforeAfter() {
 
     if (!seciliVaka) return <div className="py-20 text-center text-slate-400">Yükleniyor...</div>;
 
+    /** * GÖRSEL OPTİMİZASYON FONKSİYONU
+     * 'kafa kesilme' sorununu önlemek için hotspot ve fit parametreleri eklendi.
+     */
+    const optimizeImg = (source: any, width = 1200) => {
+        return urlFor(source)
+            .width(width)
+            .height(Math.round(width * 0.75)) // 4:3 oranını korumaya zorla
+            .fit('crop') // Hotspot (odak noktası) varsa orayı baz alır
+            .crop('focalpoint')
+            .quality(90)
+            .auto('format')
+            .url();
+    };
+
     return (
         <section className="py-16 bg-[#F8FAFC]">
             <div className="container mx-auto px-4 max-w-6xl">
                 <div className="text-center mb-10">
-                    <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 tracking-tight">Vaka Sonuçları</h2>
-                    <div className="h-1.5 w-20 bg-blue-600 mx-auto rounded-full mb-8"></div>
+                    <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 tracking-tight uppercase italic">Vaka Sonuçları</h2>
+                    <div className="h-1.5 w-20 bg-blue-600 mx-auto rounded-full mb-8 shadow-sm"></div>
 
-                    {/* ANA KATEGORİLER */}
+                    {/* KATEGORİ FİLTRELERİ */}
                     <div className="flex justify-center gap-2 flex-wrap mb-8">
                         {kategoriler.map((kat) => (
                             <button
                                 key={kat}
                                 onClick={() => setSeciliKategori(kat)}
-                                className={`px-6 py-2 rounded-2xl text-xs font-bold uppercase transition-all duration-300 ${seciliKategori === kat
+                                className={`px-6 py-2 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all duration-300 ${seciliKategori === kat
                                     ? 'bg-slate-900 text-white shadow-xl scale-105'
                                     : 'bg-white text-slate-500 border border-slate-200 hover:border-slate-400'
                                     }`}
@@ -68,9 +82,9 @@ export default function BeforeAfter() {
 
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-10 items-start">
 
-                    {/* SOL TARAF: VAKA LİSTESİ (Çok vaka olunca aşağı doğru veya mobilde yana kayar) */}
+                    {/* SOL TARAF: VAKA LİSTESİ */}
                     <div className="lg:col-span-1 order-2 lg:order-1">
-                        <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4 px-2">
+                        <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4 px-2">
                             {seciliKategori} Vakaları
                         </h3>
                         <div className="flex lg:flex-col gap-3 overflow-x-auto lg:overflow-y-auto lg:max-h-[600px] pb-4 no-scrollbar snap-x">
@@ -79,16 +93,19 @@ export default function BeforeAfter() {
                                     key={vaka._id}
                                     onClick={() => { setSeciliVaka(vaka); setSliderPos(50); }}
                                     className={`snap-start min-w-[140px] lg:min-w-full group relative p-2 rounded-2xl transition-all border-2 ${seciliVaka._id === vaka._id
-                                        ? 'border-blue-600 bg-blue-50'
+                                        ? 'border-blue-600 bg-blue-50 shadow-md'
                                         : 'border-transparent bg-white hover:bg-slate-50'
                                         }`}
                                 >
                                     <div className="flex flex-col lg:flex-row items-center gap-3">
-                                        <div className="w-16 h-16 rounded-xl overflow-hidden bg-slate-200 shrink-0 shadow-sm">
-                                            <img src={urlFor(vaka.sonrasi).url()} className="w-full h-full object-cover" alt="thumb" />
+                                        <div className="w-14 h-14 rounded-xl overflow-hidden bg-slate-200 shrink-0 shadow-sm">
+                                            <img
+                                                src={optimizeImg(vaka.sonrasi, 200)}
+                                                className="w-full h-full object-cover object-top"
+                                                alt="vaka-thumb"
+                                            />
                                         </div>
-                                        <span className={`text-xs font-bold text-center lg:text-left leading-tight ${seciliVaka._id === vaka._id ? 'text-blue-700' : 'text-slate-600'
-                                            }`}>
+                                        <span className={`text-[11px] font-black uppercase tracking-tight text-center lg:text-left leading-tight ${seciliVaka._id === vaka._id ? 'text-blue-700' : 'text-slate-600'}`}>
                                             {vaka.baslik}
                                         </span>
                                     </div>
@@ -97,33 +114,39 @@ export default function BeforeAfter() {
                         </div>
                     </div>
 
-                    {/* SAĞ TARAF: BÜYÜK SLIDER */}
+                    {/* SAĞ TARAF: BÜYÜK SLIDER (GÖRSEL ODAKLI) */}
                     <div className="lg:col-span-3 order-1 lg:order-2">
                         <div className="relative group">
                             <div
                                 ref={containerRef}
-                                className="relative aspect-[4/3] md:aspect-[16/10] rounded-[2.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] border-[10px] border-white bg-white cursor-ew-resize"
+                                className="relative aspect-[4/3] md:aspect-[16/10] rounded-[2.5rem] overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.15)] border-[10px] border-white bg-white cursor-ew-resize select-none"
                                 onMouseMove={handleMove}
                                 onTouchMove={handleMove}
                             >
-                                {/* Katmanlar */}
-                                <img src={urlFor(seciliVaka.sonrasi).url()} className="absolute inset-0 w-full h-full object-cover" alt="Sonrası" />
+                                {/* Katmanlar - object-top sayesinde kafa hizası korunur */}
+                                <img
+                                    src={optimizeImg(seciliVaka.sonrasi, 1400)}
+                                    className="absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-300"
+                                    alt="Sonrası"
+                                />
                                 <div className="absolute inset-0 z-10" style={{ clipPath: `inset(0 ${100 - sliderPos}% 0 0)` }}>
-                                    <img src={urlFor(seciliVaka.oncesi).url()} className="absolute inset-0 w-full h-full object-cover" alt="Öncesi" />
+                                    <img
+                                        src={optimizeImg(seciliVaka.oncesi, 1400)}
+                                        className="absolute inset-0 w-full h-full object-cover object-top"
+                                        alt="Öncesi"
+                                    />
                                 </div>
 
                                 {/* Bilgi Etiketleri */}
-                                <div className="absolute top-6 left-6 z-30 bg-blue-600/80 backdrop-blur-md text-white px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-tighter">Öncesi</div>
-                                <div className="absolute top-6 right-6 z-30 bg-slate-900/80 backdrop-blur-md text-white px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-tighter">Sonrası</div>
+                                <div className="absolute top-6 left-6 z-30 bg-blue-600/90 backdrop-blur-md text-white px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest">Öncesi</div>
+                                <div className="absolute top-6 right-6 z-30 bg-slate-900/90 backdrop-blur-md text-white px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest">Sonrası</div>
 
-                                {/* Kaydırıcı */}
-                                <div className="absolute top-0 bottom-0 w-1 bg-white z-20 shadow-[0_0_20px_rgba(0,0,0,0.5)]" style={{ left: `${sliderPos}%` }}>
-                                    <div className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-2xl flex items-center justify-center border-4 border-white cursor-ew-resize group-hover:scale-110 transition-transform">
+                                {/* Kaydırıcı (Handle) */}
+                                <div className="absolute top-0 bottom-0 w-1 bg-white z-20 shadow-[0_0_20px_rgba(0,0,0,0.3)]" style={{ left: `${sliderPos}%` }}>
+                                    <div className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 w-11 h-11 bg-white rounded-full shadow-2xl flex items-center justify-center border-[5px] border-blue-50 cursor-ew-resize group-hover:scale-110 transition-transform duration-300">
                                         <div className="flex items-center gap-1.5 text-blue-600">
-                                            {/* Sol Ok */}
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 256 256"><path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"></path></svg>
-                                            {/* Sağ Ok */}
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 256 256"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"></path></svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="bold" viewBox="0 0 256 256"><path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"></path></svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="bold" viewBox="0 0 256 256"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"></path></svg>
                                         </div>
                                     </div>
                                 </div>
