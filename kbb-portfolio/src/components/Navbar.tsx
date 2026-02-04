@@ -54,7 +54,7 @@ export default function Navbar() {
                         {/* Logo kapsayıcısı küçüldü ama img tam kapasite kullanıyor */}
                         <div className="h-10 md:h-12 w-auto flex items-center justify-center">
                             <img
-                                src="/logo.jpg"
+                                src="/logo.png"
                                 alt="Prof. Dr. İsmail İynen Logo"
                                 className="h-full w-auto object-contain mix-blend-multiply"
                             />
